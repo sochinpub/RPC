@@ -16,15 +16,21 @@
 int ret_int;
 return_type r;
 
+/**
+ * add服务程序
+ *
+ *
+ */
 return_type add(const int nparams, arg_type* a) {
 
+    // 两个参数
     if(nparams != 2) {
         /* Error! */
         r.return_val = NULL;
         r.return_size = 0;
         return r;
     }
-
+    // 参数大小
     if(a->arg_size != sizeof(int) ||
        a->next->arg_size != sizeof(int)) {
        printf("arg_size is %d, next_arg_size is %d", a->arg_size, a->next->arg_size);
@@ -38,12 +44,17 @@ return_type add(const int nparams, arg_type* a) {
     int j = *(int *)(a->next->arg_val);
 
     ret_int = i+j;
+    // 返回
     r.return_val = (void *)(&ret_int);
     r.return_size = sizeof(int);
 
     return r;
 }
 
+/**
+ * 
+ *
+ */
 return_type warrenthefuckingmansmith(const int nparams, arg_type* a) {
 
     if(nparams != 2) {
@@ -74,7 +85,7 @@ return_type warrenthefuckingmansmith(const int nparams, arg_type* a) {
 
 int main() {
     register_procedure("addtwo", 2, add);
-		register_procedure("warrenthefuckingmansmith", 2, warrenthefuckingmansmith);
+    register_procedure("warrenthefuckingmansmith", 2, warrenthefuckingmansmith);
 
     launch_server();
 

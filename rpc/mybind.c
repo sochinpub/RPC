@@ -44,6 +44,7 @@ int mybind(int sockfd, struct sockaddr_in *addr) {
     unsigned short p;
     for(p = PORT_RANGE_LO; p <= PORT_RANGE_HI; p++) {
 	addr->sin_port = htons(p);
+	// 尝试绑定端口号
 	int b = bind(sockfd, (const struct sockaddr *)addr, sizeof(struct sockaddr_in));
 	if(b < 0) {
 	    continue;
@@ -51,7 +52,7 @@ int mybind(int sockfd, struct sockaddr_in *addr) {
 	else {
 	    break;
 	}
-    }
+    }// for
 
     if(p > PORT_RANGE_HI) {
 	fprintf(stderr, "mybind(): all bind() attempts failed. No port available...?\n");

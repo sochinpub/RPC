@@ -15,10 +15,12 @@
 
 int main() {
     int a = -10, b = 20;
-    return_type ans = make_remote_call("ecelinux3.uwaterloo.ca",
-                                   10001, "addtwo", 2,
-                                   sizeof(int), (void *)(&a),
-                                   sizeof(int), (void *)(&b));
+    return_type ans = make_remote_call("ecelinux3.uwaterloo.ca", //服务端主机名
+                                   10001,    			// 服务端口
+			           "addtwo", 			// 请求rpc程序名
+                                   2,				// 参数个数
+                                   sizeof(int), (void *)(&a),	// 参数
+                                   sizeof(int), (void *)(&b));	// 参数
     int result = *(int *)(ans.return_val);
 
     printf("Client, got result: %d\n", result);
